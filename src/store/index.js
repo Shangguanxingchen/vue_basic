@@ -4,8 +4,23 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    userInfo: null
+  },
+  getters: {
+    userInfo: (state) => {
+      if (state.userInfo == null) {
+        state.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      }
+      return state.userInfo;
+    }
+  },
+  mutations: {
+    getUserInfo: (state, payload) => {
+      state.userInfo = payload;
+      localStorage.setItem('userInfo', JSON.stringify(payload));
+    }
+  },
   actions: {},
   modules: {}
 });

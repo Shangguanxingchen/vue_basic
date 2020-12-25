@@ -1,32 +1,45 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+      <el-container style="height: 100%;" direction="vertical">
+        <Header v-if='this.$route.path!="/login"'/>
+        <router-view></router-view>
+      </el-container>
   </div>
 </template>
 
-<style lang="scss">
+<script>
+import Header from '@/components/Header.vue';
+export default {
+  name: "app",
+  components: {
+    Header,
+  }
+}
+</script>
+
+<style>
+html,body,#app{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  background-color: #ffffff;
+}
+a {
+  text-decoration: none;
+   color: #606266;
+}
+a:hover {
+  color: #66b1ff;
+}
+.router-link-active {
+  text-decoration: none;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
